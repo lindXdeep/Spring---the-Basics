@@ -1,9 +1,10 @@
 package com.lindx.example;
 
 import com.lindx.example.beans.Client;
+import com.lindx.example.beans.Event;
 import com.lindx.example.loggers.ConsoleEventLogger;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
@@ -20,17 +21,24 @@ public class App {
 
     public static void main(String[] args) {
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
 
-        app.logEvent("Some event for 1");
-        app.logEvent("Some event for 2");
+        Event event = ctx.getBean(Event.class);
+        app.logEvent(event, "Some event for 1");
+
+        event = ctx.getBean(Event.class);
+        app.logEvent(event, "Some event for 2");
+
+        ctx.close();
     }
 
-    public void logEvent(String msg) {
+    public void logEvent(Event event, String msg) {
 
         String message = msg.replaceAll(client.getId(), client.getFullname());
-        eventLogger.logEvent(message);
+
+        event.setMsg(message);
+        eventLogger.logEvent(event);
     }
 }
+
