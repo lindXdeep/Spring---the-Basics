@@ -3,7 +3,6 @@ package com.lindx.example.beans;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
-
 public class Event {
 
     private static final AtomicInteger AUTO_ID = new AtomicInteger();

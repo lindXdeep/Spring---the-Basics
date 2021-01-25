@@ -1,31 +1,33 @@
 package com.lindx.example.beans;
 
 public class Client {
-    private String id;
-    private String fullname;
 
+    private String id;
+
+    private String fullName;
+    
     private String greeting;
 
-    public Client(String id, String fullname) {
+    public Client(String id, String fullName) {
         super();
         this.id = id;
-        this.fullname = fullname;
+        this.fullName = fullName;
     }
 
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public String getFullname() {
-        return this.fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setGreeting(String greeting) {
