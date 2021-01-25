@@ -4,6 +4,8 @@ public class Client {
     private String id;
     private String fullname;
 
+    private String greeting;
+
     public Client(String id, String fullname) {
         super();
         this.id = id;
@@ -24,5 +26,13 @@ public class Client {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public void setGreeting(String greeting) {
+        this.greeting = greeting;
+    }
+
+    public String getGreeting() {
+        return greeting;
     }
 }

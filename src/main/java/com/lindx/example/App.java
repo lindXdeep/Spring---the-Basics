@@ -4,6 +4,7 @@ import com.lindx.example.beans.Client;
 import com.lindx.example.beans.Event;
 import com.lindx.example.loggers.ConsoleEventLogger;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,6 +23,7 @@ public class App {
     public static void main(String[] args) {
 
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+
         App app = (App) ctx.getBean("app");
 
         Event event = ctx.getBean(Event.class);
@@ -36,7 +38,7 @@ public class App {
     public void logEvent(Event event, String msg) {
 
         String message = msg.replaceAll(client.getId(), client.getFullname());
-
+        
         event.setMsg(message);
         eventLogger.logEvent(event);
     }
