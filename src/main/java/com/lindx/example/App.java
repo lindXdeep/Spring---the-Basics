@@ -8,13 +8,15 @@ import com.lindx.example.beans.EventType;
 
 import com.lindx.example.loggers.EventLogger;
 import com.lindx.example.spring.AppConfig;
-;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
 
+    @Autowired
     private Client client;
 
     private EventLogger defaultLogger;
