@@ -14,7 +14,10 @@ public class Client {
         this.fullName = fullName;
     }
 
-    public String getId() {
+    public Client() {
+	}
+
+	public String getId() {
         return id;
     }
 

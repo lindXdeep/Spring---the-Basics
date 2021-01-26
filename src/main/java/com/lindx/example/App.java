@@ -2,16 +2,13 @@ package com.lindx.example;
 
 import java.util.Map;
 
-import javax.security.auth.login.AppConfigurationEntry;
-
 import com.lindx.example.beans.Client;
 import com.lindx.example.beans.Event;
 import com.lindx.example.beans.EventType;
 
 import com.lindx.example.loggers.EventLogger;
 import com.lindx.example.spring.AppConfig;
-
-import org.springframework.context.ApplicationContext;
+;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -41,6 +38,9 @@ public class App {
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
         App app = (App) ctx.getBean("app");
+
+        Client client = ctx_app.getBean(Client.class);
+        System.out.println(client.getGreeting());
 
         Event event = ctx_app.getBean(Event.class);
         app.logEvent(EventType.INFO, event, "Some event for 1");
