@@ -2,13 +2,18 @@ package com.lindx.example;
 
 import java.util.Map;
 
+import javax.security.auth.login.AppConfigurationEntry;
+
 import com.lindx.example.beans.Client;
 import com.lindx.example.beans.Event;
 import com.lindx.example.beans.EventType;
 
 import com.lindx.example.loggers.EventLogger;
+import com.lindx.example.spring.AppConfig;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
@@ -28,17 +33,22 @@ public class App {
 
     public static void main(String[] args) {
 
+        AnnotationConfigApplicationContext ctx_app = new AnnotationConfigApplicationContext();
+            ctx_app.register(AppConfig.class);
+            ctx_app.scan("com.lindx.example");
+            ctx_app.refresh();
+
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
         App app = (App) ctx.getBean("app");
 
-        Event event = ctx.getBean(Event.class);
+        Event event = ctx_app.getBean(Event.class);
         app.logEvent(EventType.INFO, event, "Some event for 1");
 
-        event = ctx.getBean(Event.class);
+        event = ctx_app.getBean(Event.class);
         app.logEvent(EventType.ERROR, event, "Some event for 2");
 
-        event = ctx.getBean(Event.class);
+        event = ctx_app.getBean(Event.class);
         app.logEvent(null, event, "Some event for 3");
 
         ctx.close();

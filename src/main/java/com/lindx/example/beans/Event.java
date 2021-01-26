@@ -3,14 +3,26 @@ package com.lindx.example.beans;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 public class Event {
 
     private static final AtomicInteger AUTO_ID = new AtomicInteger();
 
     private int id;
-	private String msg;
+    private String msg;
+    
+    @Autowired
+    @Qualifier("newDate")
     private Date date;
     
+    @Autowired
     private DateFormat dateFormat;
 
     public Event(Date date, DateFormat dateFormat){
