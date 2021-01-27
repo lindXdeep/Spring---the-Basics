@@ -2,16 +2,17 @@ package com.lindx.example.loggers;
 
 import java.util.Collection;
 
+import javax.annotation.Resource;
+
 import com.lindx.example.beans.Event;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CombinedEventLogger implements EventLogger {
 
-    private final Collection<EventLogger> loggers;
-
-    public CombinedEventLogger(Collection<EventLogger> loggers) {
-        super();
-        this.loggers = loggers;
-    }
+    @Resource(name = "combinedLoggers")
+    private Collection<EventLogger> loggers;
 
     @Override
     public void logEvent(Event event) {

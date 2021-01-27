@@ -25,10 +25,14 @@ public class Event {
     @Autowired
     private DateFormat dateFormat;
 
+    public Event() {
+        this.id = AUTO_ID.getAndIncrement();
+    }
+
     public Event(Date date, DateFormat dateFormat){
         
-        this.id = AUTO_ID.getAndIncrement();
-        
+        this();
+
         this.date = date;
         this.dateFormat = dateFormat;
     }
@@ -49,8 +53,9 @@ public class Event {
 		return date;
 	}
 
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", msg=" + msg + ", date=" + dateFormat.format(date) + "]";
-	}
+    @Override
+    public String toString() {
+        return "Event [id=" + id + ", msg=" + msg + ", date="
+                + (dateFormat != null ? dateFormat.format(date) : date) + "]";
+    }
 }
